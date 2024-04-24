@@ -30,6 +30,9 @@ INSTALLED_APPS = [
     "category",
     'accounts',
     'store',
+    'carts',
+    'orders',
+
 ]
 
 MIDDLEWARE = [
@@ -55,7 +58,8 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                'category.context_processors.menu_links'
+                'category.context_processors.menu_links',
+                'carts.context_processors.counter',
             ],
         },
     },
@@ -64,6 +68,7 @@ TEMPLATES = [
 WSGI_APPLICATION = "djangoProject.wsgi.application"
 
 AUTH_USER_MODEL = 'accounts.Account'
+
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
@@ -110,7 +115,28 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR/'media'
+
+from django.contrib.messages import constants as messages
+
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+}
+
+# SMTP Configuration
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'client.asya@gmail.com'
+EMAIL_HOST_PASSWORD = 'fkpb ovzw eqis yojs'
+EMAIL_USE_TLS = True
+
+
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
+
+
+
+
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
