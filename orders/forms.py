@@ -1,6 +1,6 @@
+# forms.py
 from django import forms
-from .models import Order
-
+from .models import Order  # Ensure to import the Order model
 
 class OrderForm(forms.ModelForm):
     class Meta:
