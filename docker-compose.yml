@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    environment:
+      - PYTHONDONTWRITEBYTECODE=1
+      - PYTHONUNBUFFERED=1
+    networks:
+      - webnet
+
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_DB=mydatabase
+      - POSTGRES_USER=asyacora
+      - POSTGRES_PASSWORD=2734
+    volumes:
+      - postgres_data:/Users/asyacora/Desktop/data
+    networks:
+      - webnet
+
+networks:
+  webnet:
+
+volumes:
+  postgres_data:
