@@ -6,6 +6,9 @@ from carts.models import CartItem
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.http import HttpResponse
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
+from django.conf import settings
+
 # Create your views here.
 def store(request, category_slug=None):
     categories = None
@@ -32,19 +35,22 @@ def store(request, category_slug=None):
     return render(request, 'store/store.html', context)
 
 
+# views.py # Assuming __cart_id is defined in utils.py
+
 def product_detail(request, category_slug, product_slug):
     try:
-        single_product = Product.objects.get(category__slug=category_slug, slug=product_slug)
-        in_cart = CartItem.objects.filter(cart__cart_id=__cart_id(request),product=single_product).exists()
+        single_product = get_object_or_404(Product, category__slug=category_slug, slug=product_slug)
+        in_cart = CartItem.objects.filter(cart__cart_id=__cart_id(request), product=single_product).exists()
     except Exception as e:
         raise e
-
     context = {
         'single_product': single_product,
         'in_cart': in_cart,
     }
 
     return render(request, 'store/product_detail.html', context)
+
+
 
 def search(request):
     products = None
@@ -55,6 +61,7 @@ def search(request):
                 Q(description__icontains=keyword) | Q(product_name__icontains=keyword)
             )
             product_count = products.count()
+
     context = {
         'products': products,
         'product_count':product_count

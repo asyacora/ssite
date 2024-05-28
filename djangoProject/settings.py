@@ -130,7 +130,10 @@ EMAIL_HOST_PASSWORD = 'fkpb ovzw eqis yojs'
 EMAIL_USE_TLS = True
 
 
-
+STRIPE_SECRET_KEY_TEST = 'sk_test_51PKdxTEvA4zMMdKT97g0Vw6sv3ekDQ48wqcD8kX4e7pUBbT3ARD0bBa3EBgmGT5mZ51pM2P4hVItah2LaYkpgWUZ00sh2wNz5s'
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51PKdxTEvA4zMMdKTEqBkRjcAuUfrS5sMLyPZATYyVEeeJZCtJQwvOOqHDoMrZGiaipLeNkDBfh3XATxAD80KxpWi00TKllejsw'
+PRODUCT_PRICE = 'price_1PKeGfEvA4zMMdKTh6rtb9e0'
+REDIRECT_DOMAIN = 'http://127.0.0.1:8000'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
